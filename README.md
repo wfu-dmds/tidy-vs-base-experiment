@@ -6,6 +6,11 @@ What: Activity before 112 either presented with tidy or base
  * Datafest activity
  * Flights data for assessment
 
+LEARNING GOALS:
+ 1. Filter data
+ 2. Create a new variable
+ 3. Create a visualization using those variables
+
 Demographics:
   * When was the last class you had that used R?
   * Previous coding experience (other languages)
