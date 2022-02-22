@@ -23,7 +23,7 @@ Demographics:
   * Primary analysis: confidence in coding (pre/post)
 
 Secondary analyses:
-  * subgroup: English and first language
+  * subgroup: English as first language
   * Ability 
 
 Example: https://lucy.shinyapps.io/learnr-a/#section-tidy-data-frames
