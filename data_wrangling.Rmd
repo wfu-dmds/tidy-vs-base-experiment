@@ -1,0 +1,460 @@
+---
+title: "Introduction to Data Wrangling"
+output: 
+  rmdformats::robobook:
+    css: "homework.css"
+    highlight: pygments
+link-citations: yes
+---
+
+# The Goal: Data Wrangling
+
+When you first start working with a dataset, it can be daunting to know where to start. This is particularly true when you have large, complex data! A good starting point is to explore basic characteristics of the dataset, like its size, the types of variables recorded, whether there are any missing data, and summaries and visualizations of important variables.
+
+In this activity, we will cover several important skills that are useful in exploratory data analysis:
+
+* **Creating a subset of the data.** By focusing initially on a subset, we can make exploration more manageable. Then we can explore the rest of the data later.
+* **Checking for missing data.** Missing data can be a problem for statistical analyses, so we need to know whether any data is missing.
+* **Calculating summary statistics.** Summary statistics are useful for describing the variables in our data. We usually begin with the variables that seem most important.
+* **Creating new variables.** Sometimes, the question we're interested in requires us to create new variables from some combination of the existing variables.
+
+These skills are examples of **data wrangling:** manipulating, summarizing, and transforming data for exploratory data analysis and statistical modeling. This activity will introduce data wrangling functions from the `dplyr` and `tidyr` R packages.
+
+# Setup
+
+### R packages
+
+For this activity you will need the `dplyr` and `tidyr` packages. Each of these packages is part of the tidyverse, a collection of R packages with a common philosophy for data analysis. If you don't have the `tidyverse` package installed, go to your R console and install it first with `install.packages("tidyverse")` (remember you only need to do this once).
+
+Once the `tidyverse` package is installed, load it into R with `library(tidyverse)`.
+
+### Data
+
+In this activity we will work with data on 344 penguins recorded near Palmer Station, Antarctica. Variables include 
+
+* `species`: penguin's species (Adelie, Chinstrap, Gentoo)
+* `island`: island where penguin measured (Biscoe, Dream, Torgersen)
+* `bill_length_mm`: penguin's bill length (mm)
+* `bill_depth_mm`: penguin's bill depth (mm)
+* `flipper_length_mm`: penguin's flipper length (mm)
+* `body_mass_g`: penguin's body mass (g)
+* `sex`: penguin's sex (female, male)
+* `year`: year when data recorded (2007, 2008, 2009)
+
+This information is contained in the `penguins` dataset, which is part of the `palmerpenguins` R package. If you don't have the `palmerpenguins` package installed, go to your R console and install it first with `install.packages("palmerpenguins")` (remember you only need to do this once).
+
+Once the `palmerpenguins` package is installed, load it into R with `library(palmerpenguins)`.
+
+# Activity
+
+## Looking at the data
+
+To begin, let's look at our data. The `glimpse` function is useful for taking a peek at a dataset.
+
+:::{.question}
+
+#### Code
+
+In your R console, run the following:
+
+```{r eval=F}
+glimpse(penguins)
+```
+
+:::
+
+What does this output tell us?
+
+* The number of rows (i.e., the number of penguins): 344
+* The number of columns (i.e., the number of variables recorded for each penguin): 8
+* The names of each variable (e.g., `species`, `island`, etc.), and the first few observations in each variable (Adelie, Torgersen, etc.)
+
+:::{.question}
+#### Question 1
+
+What is the bill length for the first penguin in the dataset? What species is that penguin?
+
+:::
+
+<SCRIPT>
+function ShowAndHide(divid) {
+    var x = document.getElementById(divid);
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</SCRIPT>
+
+<BUTTON ONCLICK="ShowAndHide('q1_solution')">Solution</BUTTON>
+
+<DIV ID="q1_solution" STYLE="display:none">
+The first penguin is an Adelie penguin, and has a bill length of 39.1 mm.
+</DIV>
+
+</br>
+
+Now look at the bill length for the fourth penguin. Instead of a number, you get `NA`. What does `NA` mean?
+
+In R, `NA` stands for "Not Available", and it means that this value is *missing* in our data. Missing data can be a problem, because R doesn't know how to handle missing values when we calculate summary statistics or fit models.
+
+## Handling missing data
+
+A simple way of dealing with missing data is to remove any rows which contain missing values. How do we do this? 
+
+:::{.question}
+
+#### Code
+
+In your R console, run the following code:
+
+```{r eval=F}
+penguins <- penguins %>%
+  drop_na()
+```
+
+:::
+
+
+What's going on in this code? First, we take the penguins data:
+```r
+penguins
+```
+Next, we want to remove missing values:
+
+```r
+penguins %>%
+  drop_na()
+```
+  * The `drop_na()` function says "remove any rows with missing values"
+  * The `%>%` means "Take `<THIS>`, then do `<THAT>`". So `penguins %>% drop_na()` means "take `penguins`, then remove rows with missing values"
+
+Finally, we need to save the result. The `<-` is like "Save As...", and means "take what is on the right hand side, and save it as the left hand side". So `penguins <- penguins %>% drop_na()` means "modify `penguins` to remove rows with missing values".
+
+:::{.question}
+#### Question 2
+
+How many rows did we remove by dropping missing values?
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q2_solution')">Solution</BUTTON>
+
+<DIV ID="q2_solution" STYLE="display:none">
+We can use the `glimpse` function to look at our `penguins` data after removing missing values:
+
+```{r eval=F}
+glimpse(penguins)
+```
+
+There are now 333 rows, so we have removed 11 (= 344 - 333) rows.
+</DIV>
+
+</br>
+
+## Making a subset of data
+
+We have three species of penguin: Adelie, Chinstrap, and Gentoo. Ultimately, we might want to compare characteristics between these different species, but having groups in the data can make initial exploration more challenging. A good strategy is to begin by focusing on just one group. In this case, we will focus on just one species of penguin for now.
+
+Let's focus on the Chinstrap penguins. How do we do that? We can use the `filter` function, which keeps only the rows which satisfy a specified condition.
+
+:::{.question}
+#### Code
+
+In your R console, run the following code:
+
+```{r eval=F}
+chinstrap_penguins <- penguins %>%
+  filter(species == "Chinstrap")
+```
+
+:::
+
+What's going on in this code? Remember that the pipe `%>%` means "take `<THIS>`, then do `<THAT>`". So we take the `penguins` data, then filter so that only the Chinstrap penguins are left (`species == "Chinstrap"`). Finally, we save the result as a *new* dataset, which we call `chinstrap_penguins`.
+
+* Note that we use two equals signs (`==`) when we are checking whether species is Chinstrap
+* Because Chinstrap is a word (rather than a number), we need to put it in quotes (`"Chinstrap"`) for R to interpret the code correctly.
+
+:::{.question}
+#### Question 3
+
+How many Chinstrap penguins are in our data (after removing missing values)?
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q3_solution')">Solution</BUTTON>
+
+<DIV ID="q3_solution" STYLE="display:none">
+We can use the `glimpse` function to look at our `chinstrap_penguins` data:
+
+```{r eval=F}
+glimpse(chinstrap_penguins)
+```
+
+There are 68 rows in the `chinstrap_penguins` data, so there are 68 Chinstrap penguins.
+</DIV>
+
+</br>
+
+## Summary statistics
+
+Now that we have a subset of data, let's explore some variables! One part of exploring variables is summary statistics, like the mean, standard deviation, median, and IQR. Let's start with the mean bill length, which is calculated with the `mean` function in R.
+
+:::{.question}
+#### Code
+
+In your R console, run the following code:
+
+```{r eval=F}
+chinstrap_penguins %>%
+  summarize(mean_bill_length = mean(bill_length_mm))
+```
+
+:::
+
+This tells us that the mean bill length for Chinstrap penguins in the data is 48.8 mm. How does the code work?
+
+* The `summarize` function mean "calculate summary statistics"
+* Inside the `summarize` function, we calculate the statistics we want
+* In this case, we want the mean bill length (`mean(bill_length_mm)`)
+* Finally, we give our summary statistic a meaningful name: `mean_bill_length` (we could call it whatever we want)
+
+:::{.question}
+#### Question 4
+
+Modify the code above to calculate the mean body mass for Chinstrap penguins.
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q4_solution')">Solution</BUTTON>
+
+<DIV ID="q4_solution" STYLE="display:none">
+
+```{r eval=F}
+chinstrap_penguins %>%
+  summarize(mean_body_mass = mean(body_mass_g))
+```
+
+The average body mass for Chinstrap penguins in the data is 3733 g.
+</DIV>
+
+</br>
+
+:::{.question}
+#### Question 5
+
+Modify the code above to calculate the *median* body mass for Chinstrap penguins. *Hint: the `median` function calculates medians in R*
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q5_solution')">Solution</BUTTON>
+
+<DIV ID="q5_solution" STYLE="display:none">
+
+```{r eval=F}
+chinstrap_penguins %>%
+  summarize(median_body_mass = median(body_mass_g))
+```
+
+The median body mass for Chinstrap penguins in the data is 3700 g.
+</DIV>
+
+</br>
+
+:::{.question}
+#### Question 6
+
+Calculate the mean bill length for *Adelie* penguins.
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q6_solution')">Solution</BUTTON>
+
+<DIV ID="q6_solution" STYLE="display:none">
+
+```{r eval=F}
+adelie_penguins <- penguins %>%
+  filter(species == "Adelie")
+
+adelie_penguins %>%
+  summarize(mean_bill_length = mean(bill_length_mm))
+```
+
+The mean bill length for Adelie penguins is 38.8 mm.
+</DIV>
+
+</br>
+
+## Comparing groups
+
+In Question 6, you calculated the mean bill length for Adelie penguins. But to do that, we had to first subset the data to pull out the Adelies. Is there a way to compare statistics between groups, without lots of subsetting?
+
+Fortunately, there is! The `group_by` function allows us to group our data before calculating summary statistics.
+
+:::{.question}
+#### Code
+
+In your R console, run the following code:
+
+```{r eval=F}
+penguins %>%
+  group_by(species) %>%
+  summarize(mean_bill_length = mean(bill_length_mm))
+```
+
+:::
+
+Now we get the average bill length for *each* species. What's going on in this code?
+
+* First, notice that we can chain our pipes `%>%` together. The output of one line is the input to the next line. This code means "take our penguins, THEN group by species, THEN calculate summary statistics"
+* The `group_by` function creates groups based on the values of one or more variables. Here, our groups are defined by the `species` variable, so we get one group per species. After grouping, summary statistics are calculated separately for each group.
+
+:::{.question}
+#### Question 7
+
+Calculate the mean body mass for each species of penguin.
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q7_solution')">Solution</BUTTON>
+
+<DIV ID="q7_solution" STYLE="display:none">
+
+```{r eval=F}
+penguins %>%
+  group_by(species) %>%
+  summarize(mean_body_mass = mean(body_mass_g))
+```
+
+</DIV>
+
+</br>
+
+:::{.question}
+#### Question 8
+
+Calculate the mean body mass for each sex.
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q8_solution')">Solution</BUTTON>
+
+<DIV ID="q8_solution" STYLE="display:none">
+
+```{r eval=F}
+penguins %>%
+  group_by(sex) %>%
+  summarize(mean_body_mass = mean(body_mass_g))
+```
+
+</DIV>
+
+</br>
+
+:::{.question}
+#### Question 9
+
+Calculate the mean body mass for each species and sex (so we get the mass for male Adelies, female Adelies, etc.).
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q9_solution')">Solution</BUTTON>
+
+<DIV ID="q9_solution" STYLE="display:none">
+
+```{r eval=F}
+penguins %>%
+  group_by(species, sex) %>%
+  summarize(mean_body_mass = mean(body_mass_g))
+```
+
+</DIV>
+
+</br>
+
+## Creating new variables
+
+Finally, in exploring our data we may want to create new variables. For example, suppose we care about the *ratio* of body mass to flipper length. We can use the `mutate` function to create new variables.
+
+:::{.question}
+#### Code
+
+In your R console, run the following code:
+
+```{r eval=F}
+penguins <- penguins %>%
+  mutate(bf_ratio = body_mass_g/flipper_length_mm)
+```
+
+Now `glimpse` your `penguins` data, and confirm that the new `bf_ratio` variable appears.
+
+:::
+
+What's going on in this code? 
+
+* `mutate` creates a new variable
+* We call this new variable `bf_ratio`
+* `bf_ratio` is defined as `body_mass_g/flipper_length_mm`
+
+:::{.question}
+#### Question 10
+
+Calculate the median ratio between body mass and flipper length for each species.
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q10_solution')">Solution</BUTTON>
+
+<DIV ID="q10_solution" STYLE="display:none">
+
+```{r eval=F}
+penguins %>%
+  group_by(species) %>%
+  summarize(median_bf = median(bf_ratio))
+```
+
+</DIV>
+
+</br>
+
+:::{.question}
+#### Question 11
+
+Suppose instead we are interested in the difference between bill length and bill depth. What is the maximum difference between bill length and bill depth, in each species? *Hint: the `max` function calculates the maximum*
+
+:::
+
+<BUTTON ONCLICK="ShowAndHide('q11_solution')">Solution</BUTTON>
+
+<DIV ID="q11_solution" STYLE="display:none">
+
+```{r eval=F}
+penguins <- penguins %>%
+  mutate(bill_diff = bill_length_mm - bill_depth_mm)
+penguins %>%
+  group_by(species) %>%
+  summarize(max_diff = max(bill_diff))
+```
+
+</DIV>
+
+</br>
+
+
+# Summary
+
+* Work with a smaller, manageable subset of the data
+  * `filter`
+* Remove missing data
+  * `drop_na`
+* Calculate summary statistics
+  * `summarize` and `group_by`
+* Create new variables
+  * `mutate`
+  
+</br>
+
+<div id="license">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work was created by Ciaran Evans and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. Last updated 2022 March 26.
+</div>
