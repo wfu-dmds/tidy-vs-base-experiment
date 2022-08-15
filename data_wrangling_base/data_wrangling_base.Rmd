@@ -23,21 +23,12 @@ It is ok for this to feel daunting at the start! This activity is designed to he
 Before you start the activity, we have a question for you:
 
 ```{r qIntro}
-question_radio(
-  "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?",
-  answer("1", correct = TRUE),
-  answer("2", correct = TRUE),
-  answer("3", correct = TRUE),
-  answer("4", correct = TRUE),
-  answer("5", correct = TRUE),
-  answer("6", correct = TRUE),
-  answer("7", correct = TRUE),
-  answer("8", correct = TRUE),
-  answer("9", correct = TRUE),
-  answer("10", correct = TRUE),
-  correct = "Thank you for your feedback!",
-  allow_retry = FALSE
-)
+shiny::sliderInput(inputId = "nervous-pre",
+                   label = "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?", 
+                   min = 1, 
+                   max = 10, 
+                   value = 5, 
+                   step = 1)
 ```
 
 
