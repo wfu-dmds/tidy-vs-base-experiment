@@ -1,0 +1,502 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(palmerpenguins)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+
+penguins_no_nas <- penguins %>%
+  drop_na()
+```
+
+## Introduction
+
+The fundamental goal of statistics is to learn from data. This means we need to be able to explore, manipulate, and summarize our data! The purpose of this activity is to introduce several key skills for exploratory data analysis. In the process, you will learn how to work with R, a statistical programming language.
+
+It is ok for this to feel daunting at the start! This activity is designed to help you start exploring data in a low-stakes setting: your responses are anonymous and will have no impact on your course grade. Throughout the activity, you will have lots of opportunities to practice what you are learning.
+
+Before you start the activity, we have a question for you:
+
+```{r qIntro}
+question_radio(
+  "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?",
+  answer("1", correct = TRUE),
+  answer("2", correct = TRUE),
+  answer("3", correct = TRUE),
+  answer("4", correct = TRUE),
+  answer("5", correct = TRUE),
+  answer("6", correct = TRUE),
+  answer("7", correct = TRUE),
+  answer("8", correct = TRUE),
+  answer("9", correct = TRUE),
+  answer("10", correct = TRUE),
+  correct = "Thank you for your feedback!",
+  allow_retry = FALSE
+)
+```
+
+
+## Topic 1: Exploring data with `glimpse`
+
+### Data
+
+In this activity we will work with data on 344 penguins recorded near Palmer Station, Antarctica. Variables include 
+
+* `species`: penguin's species (Adelie, Chinstrap, Gentoo)
+* `island`: island where penguin measured (Biscoe, Dream, Torgersen)
+* `bill_length_mm`: penguin's bill length (mm)
+* `bill_depth_mm`: penguin's bill depth (mm)
+* `flipper_length_mm`: penguin's flipper length (mm)
+* `body_mass_g`: penguin's body mass (g)
+* `sex`: penguin's sex (female, male)
+* `year`: year when data recorded (2007, 2008, 2009)
+
+This information is contained in the `penguins` dataset.
+
+### Looking at the data
+
+The `glimpse` function is useful for taking a peek at a dataset. Click the *Run Code* button to run the following code:
+
+```{r glimpse, exercise=TRUE}
+glimpse(penguins)
+```
+
+What does this output tell us?
+
+* The number of rows (i.e., the number of penguins): 344
+* The number of columns (i.e., the number of variables recorded for each penguin): 8
+* The names of each variable (e.g., `species`, `island`, etc.), and the first few observations in each variable (Adelie, Torgersen, etc.)
+
+### Question 1
+
+```{r q1a}
+question_numeric(
+  "What is the bill length for the first penguin in the dataset? (Just report the number, you do not need to include units)",
+  answer(181, message = "Close! But that is flipper length"),
+  answer(3750, message = "Close! But that is body mass"),
+  answer(18.7, message = "Close! But that is bill depth"),
+  answer(39, message = "Don't forget the digits after the decimal"),
+  answer(39.5, message = "Close! But that is the second penguin"),
+  answer(39.1, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r q1b}
+question_text(
+  "What species is that penguin?",
+  answer("torgersen", message = "Close! But that is the island, not the species"),
+  answer("Torgersen", message = "Close! But that is the island, not the species"),
+  answer("Adelie", correct = TRUE),
+  answer("adelie", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+## Your turn! Glimpsing Midwest demographics
+
+### Data
+
+Now let's explore demographic information on midwest counties from the US census. We have information on 437 midwest counties in Illinois, Indiana, Michigan, Ohio, and Wisconsin. The dataset is called `midwest`, and the first few variables are:
+
+* `PID`: a unique county identifying number
+* `county`: the county name
+* `state`: state which the county belongs to
+* `area`: area of the county (units unknown)
+* `poptotal`: total population of the county
+
+### Question 2
+
+Use the `glimpse` function to take a peek at the `midwest` data. Click the *Hints* button if you need a hint! You can see more hints by clicking *Next hint*.
+
+```{r midwest-glimpse, exercise=TRUE, exercise.lines = 5}
+
+```
+
+```{r midwest-glimpse-hint-1}
+# fill in the ...
+glimpse(...)
+```
+
+```{r midwest-glimpse-solution}
+glimpse(midwest)
+```
+
+```{r q2a}
+question_text(
+  "In what state is Alexander county?",
+  answer("Illinois", correct = TRUE),
+  answer("illinois", correct = TRUE),
+  answer("Il", correct = TRUE),
+  answer("IL", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r q2b}
+question_numeric(
+  "What is the total population of Bond county?",
+  answer(10626, message = "Close! But that is Alexander county"),
+  answer(66090, message = "Close! But that is Adams county"),
+  answer(14991, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+## Topic 2: Missing data
+
+So far, we have used the `glimpse` function to look at a few entries in the data:
+
+```{r glimpse-penguins}
+glimpse(penguins)
+```
+
+Now look at the bill length for the fourth penguin. Instead of a number, you get `NA`. What does `NA` mean?
+
+In R, `NA` stands for "Not Available", and it means that this value is *missing* in our data. Missing data can be a problem, because R doesn't know how to handle missing values when we calculate summary statistics or fit models.
+
+### Handling missing data
+
+A simple way of dealing with missing data is to remove any rows which contain missing values. How do we do this? The `drop_na` function removes any rows with missing data.
+
+Run the following code:
+
+```{r drop-na, exercise=TRUE}
+penguins_no_nas <- penguins %>%
+  drop_na()
+
+glimpse(penguins_no_nas)
+```
+
+What's going on in this code? First, we take the penguins data:
+```r
+penguins
+```
+Next, we want to remove missing values:
+
+```r
+penguins %>%
+  drop_na()
+```
+  * The `drop_na()` function says "remove any rows with missing values"
+  * The `%>%` means "Take `<THIS>`, then do `<THAT>`". So `penguins %>% drop_na()` means "take `penguins`, then remove rows with missing values"
+
+Finally, we need to save the result. The `<-` is like "Save As...", and means "take what is on the right hand side, and save it as the left hand side". So `penguins_no_nas <- penguins %>% drop_na()` means "modify `penguins` to remove rows with missing values".
+
+### Question 3
+
+```{r q3}
+question_numeric(
+  "How many rows did we remove by removing missing values? (Hint: remember that the glimpse function displays the number of rows in the data...)",
+  answer(11, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+## Your turn! Missing values in the Midwest data?
+
+### Question 4
+
+Use the `drop_na` function to remove rows with `NA`s in the `midwest` data. Call the new dataset `midwest_no_nas`. How many rows did we remove? (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
+
+```{r midwest-drop-na, exercise=TRUE, exercise.lines = 7}
+midwest_no_nas <- ...
+
+
+glimpse(...)
+```
+
+```{r midwest-drop-na-hint-1}
+midwest_no_nas <- midwest %>%
+  ...
+
+glimpse(...)
+```
+
+```{r midwest-drop-na-hint-2}
+midwest_no_nas <- midwest %>%
+  drop_na()
+
+glimpse(...)
+```
+
+```{r midwest-drop-na-solution}
+midwest_no_nas <- midwest %>%
+  drop_na()
+
+glimpse(midwest_no_nas)
+
+# There are the same number of rows as before
+# So we didn't remove any rows!
+```
+
+
+## Topic 3: Making a subset of data
+
+The `penguins` dataset contains three species of penguin: Adelie, Chinstrap, and Gentoo. Ultimately, we might want to compare characteristics between these different species, but having groups in the data can make initial exploration more challenging. A good strategy is to begin by focusing on just one group. In this case, we will focus on just one species of penguin for now.
+
+Let's focus on the Chinstrap penguins. How do we do that? We can use the `filter` function, which keeps only the rows which satisfy a specified condition.
+
+Run the following code:
+
+```{r penguins-filter, exercise=TRUE}
+chinstrap_penguins <- penguins_no_nas %>% 
+  filter(species == "Chinstrap")
+
+glimpse(chinstrap_penguins)
+```
+
+What's going on in this code? Remember that the pipe `%>%` means "take `<THIS>`, then do `<THAT>`". So we take the `penguins` data, then filter so that only the Chinstrap penguins are left (`species == "Chinstrap"`). Finally, we save the result as a *new* dataset, which we call `chinstrap_penguins`.
+
+* Note that we use two equals signs (`==`) when we are checking whether species is Chinstrap
+* Because Chinstrap is a word (rather than a number), we need to put it in quotes (`"Chinstrap"`) for R to interpret the code correctly.
+
+### Question 5
+
+```{r q5}
+question_numeric(
+  "How many Chinstrap penguins are in the data (after removing NAs)?",
+  answer(68, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+### Question 6
+
+Modify the code above to create a new dataset containing only the Gentoo penguins. Call it `gentoo_penguins`. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
+
+```{r q6, exercise=TRUE}
+
+```
+
+```{r q6-hint-1}
+gentoo_penguins <- ...
+```
+
+```{r q6-hint-2}
+gentoo_penguins <- penguins_no_nas %>%
+  ...
+```
+
+```{r q6-hint-3}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(...)
+```
+
+```{r q6-hint-4}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == ...)
+```
+
+```{r q6-hint-5}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+glimpse(gentoo_penguins)
+```
+
+```{r q6a}
+question_numeric(
+  "How many Gentoo penguins are in the data (after removing NAs)?",
+  answer(119, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+## Your turn! Counties in Illinois
+
+In the `midwest` data, there are five states: Illinois (IL), Indiana (IN), Michigan (MI), Ohio (OH), and Wisconsin (WI).
+
+### Question 7
+
+Using the `filter` function, create a dataset containing only the counties in Illinois. Call it `illinois_counties`. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
+
+```{r q7, exercise=TRUE}
+
+```
+
+```{r q7-hint-1}
+illinois_counties <- ...
+```
+
+```{r q7-hint-2}
+illinois_counties <- midwest %>%
+  ...
+```
+
+```{r q7-hint-3}
+illinois_counties <- midwest %>%
+  filter(...)
+```
+
+```{r q7-hint-4}
+illinois_counties <- midwest %>%
+  filter(state == ...)
+```
+
+```{r q7-hint-5}
+illinois_counties <- midwest %>%
+  filter(state == "IL")
+
+glimpse(illinois_counties)
+```
+
+```{r q7a}
+question_numeric(
+  "How many counties in the data are in Illinois?",
+  answer(102, correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+
+## Topic 4: Calculating summary statistics
+
+Now that we have a subset of data, let's explore some variables! One part of exploring variables is summary statistics, like the mean, standard deviation, median, and IQR. Let's start with the mean bill length, which is calculated with the `mean` function in R.
+
+Run the following code, to calculate the mean bill length for Chinstrap penguins:
+
+
+```{r length, exercise=TRUE}
+chinstrap_penguins <- penguins_no_nas %>%
+  filter(species == "Chinstrap")
+
+chinstrap_penguins %>%
+  summarize(mean_bill_length = mean(bill_length_mm))
+```
+
+This tells us that the mean bill length for Chinstrap penguins in the data is 48.8 mm. How does the code work?
+  
+* The `summarize` function mean "calculate summary statistics"
+* Inside the `summarize` function, we calculate the statistics we want
+* In this case, we want the mean bill length (`mean(bill_length_mm)`)
+* Finally, we give our summary statistic a meaningful name: `mean_bill_length` (we could call it whatever we want)
+
+### Question 8
+
+Modify the code above to calculate the mean bill length for *Gentoo* penguins. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
+
+```{r q8, exercise=TRUE}
+
+```
+
+```{r q8-hint-1}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  ...
+```
+
+```{r q8-hint-2}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  summarize(...)
+```
+
+```{r q8-hint-3}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  summarize(mean_bill_length = mean(...))
+```
+
+```{r q8-solution}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>%
+  summarize(mean_bill_length = mean(bill_length_mm))
+```
+
+### Question 9
+
+Modify the code above to calculate the *median* *body mass* for Gentoo penguins. *Hint: the `median` function calculates medians in R* (Click the *Hints* button if you need another hint. You can see more hints by clicking *Next hint*.)
+  
+```{r q9, exercise=TRUE}
+
+```
+
+```{r q9-hint-1}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  ...
+```
+
+```{r q9-hint-2}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  summarize(...)
+```
+
+```{r q9-hint-3}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>% 
+  summarize(median_body_mass = median(...))
+```
+
+```{r q9-solution}
+gentoo_penguins <- penguins_no_nas %>%
+  filter(species == "Gentoo")
+
+gentoo_penguins %>%
+  summarize(median_body_mass = median(body_mass_g))
+```
+
+## Your turn! Average county population in Illinois
+
+Previously, you used the `filter` function to create a dataset (`illinois_counties`) containing just the Illinois counties from the `midwest` data. Now let's calculate the average population of Illinois counties. (Click the *Hints* button if you need another hint. You can see more hints by clicking *Next hint*.)
+
+### Question 10
+
+Using the `summarize` function, calculate the average total population of counties in Illinois.
+
+```{r q10, exercise=TRUE}
+
+```
+
+```{r q10-hint-1}
+illinois_counties <- midwest %>%
+  filter(state == "IL")
+
+illinois_counties %>% 
+  ...
+```
+
+```{r q10-hint-2}
+illinois_counties <- midwest %>%
+  filter(state == "IL")
+
+illinois_counties %>% 
+  summarize(...)
+```
+
+```{r q10-hint-3}
+illinois_counties <- midwest %>%
+  filter(state == "IL")
+
+illinois_counties %>% 
+  summarize(mean_pop = mean(...))
+```
+
+```{r q10-hint-4}
+illinois_counties <- midwest %>%
+  filter(state == "IL")
+
+illinois_counties %>% 
+  summarize(mean_pop = mean(poptotal))
+```

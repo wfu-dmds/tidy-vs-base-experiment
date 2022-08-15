@@ -1,0 +1,13 @@
+name: data_wrangling_base
+title: data_wrangling_base
+username:
+account: ciarane
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6779967
+bundleId: 6198004
+url: https://ciarane.shinyapps.io/data_wrangling_base/
+when: 1660394315.49431
+lastSyncTime: 1660394315.49433
+asMultiple: FALSE
+asStatic: FALSE
