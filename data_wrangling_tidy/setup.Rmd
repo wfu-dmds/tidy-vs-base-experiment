@@ -32,16 +32,26 @@ save_assessment <- function(username) {
   
   input <- getDefaultReactiveDomain()$input
   
-  assessment_ids <- c("nervous-pre", "nervous-post", "q1", "q2", "q3")
-  
   assess_response <- tibble::tibble(
     group = "tidy",
     username = username,
-    nervous_pre = input[[assessment_ids[1]]] %||% NA,
-    nervous_post = input[[assessment_ids[2]]] %||% NA,
-    q1 = input[[assessment_ids[3]]] %||% NA,
-    q2 = input[[assessment_ids[4]]] %||% NA,
-    q3 = input[[assessment_ids[5]]] %||% NA
+    nervous_pre = input[["nervous-pre"]] %||% NA_character_,
+    nervous_post = input[["nervous-post"]] %||% NA_character_,
+    q1 = input[["q1"]] %||% NA_real_,
+    q2 = input[["q2"]] %||% NA_real_,
+    q3 = input[["q3"]] %||% NA_real_,
+    age = input[["age"]] %||% NA_real_,
+    gender = input[["gender"]] %||% NA_character_,
+    self_describe_gender = input[["self_describe_gender"]] %||% NA_character_,
+    education_attained = input[["education_attained"]] %||% NA_character_,
+    first_language = input[["first_language"]] %||% NA_character_,
+    first_language_other = input[["first_language_other"]] %||% NA_character_,
+    read_language = input[["read_language"]] %||% NA_character_,
+    learned_r = input[["learned_r"]] %||% NA_character_,
+    years_using_r = input[["years_using_r"]] %||% NA_character_,
+    learned_programming_not_r = input[["learned_programming_not_r"]] %||% NA_character_,
+    years_programming_not_r = input[["years_programming_not_r"]] %||% NA_character_,
+    completed_data_analysis = input[["completed_data_analysis"]] %||% NA_character_
   )
   
   saveRDS(assess_response, file = glue::glue("assessment_{username}.rds"))
@@ -58,7 +68,20 @@ update_assessments <- function() {
          input[["nervous-post"]],
          input[["q1"]],
          input[["q2"]],
-         input[["q3"]])
+         input[["q3"]],
+         input[["age"]],
+         input[["gender"]],
+         input[["self_describe_gender"]],
+         input[["education_attained"]],
+         input[["first_language"]],
+         input[["first_language_other"]],
+         input[["read_language"]],
+         input[["learned_r"]],
+         input[["years_using_r"]],
+         input[["learned_programming_not_r"]],
+         input[["years_programming_not_r"]],
+         input[["completed_data_analysis"]]
+    )
   })
   
   shiny::observeEvent(assessment_inputs(), {
@@ -73,29 +96,6 @@ update_assessments <- function() {
 
 update_assessments()
 
-# Function to save survey data to dropbox
-save_survey_data <- function(username) {
-  
-  data <- tibble::tibble(
-    user_id = username,
-    age = input$age %||% NA,
-    gender = input$gender %||% NA,
-    self_describe_gender = input$self_describe_gender %||% NA,
-    education_attained = input$education_attained %||% NA,
-    first_language = input$first_language %||% NA,
-    first_language_other = input$first_language_other %||% NA,
-    read_language = input$read_language %||% NA,
-    learned_r = input$learned_r %||% NA,
-    years_using_r = input$years_using_r %||% NA,
-    learned_programming_not_r = input$learned_programming_not_r %||% NA,
-    years_programming_not_r = input$years_programming_not_r %||% NA,
-    completed_data_analysis = input$completed_data_analysis %||% NA,
-    number_completed_data_analysis = input$number_completed_data_analysis %||% NA
-  )
-  saveRDS(data, file = glue("survey_{username}.rds"))
-  rdrop2::drop_upload(file = glue("survey_{username}.rds"),
-                      path = "/D'Agostino McGowan Data Science Lab/2022/survey_results/")
-}
 
 observeEvent(input$complete_session, {
   user_id <- access_username()
@@ -108,8 +108,6 @@ observeEvent(input$complete_session, {
         easyClose = TRUE
       )
     ) 
-    save_survey_data(username = user_id)
-    
   } else {
     showModal(
       modalDialog(title = "Congratulations, you finished the study!",
@@ -119,7 +117,6 @@ observeEvent(input$complete_session, {
                   footer = actionButton("save_email", "Save Email")
       )
     )
-    save_survey_data(username = user_id)
   } 
 }, ignoreInit = TRUE)
 observeEvent(input$save_email, {
