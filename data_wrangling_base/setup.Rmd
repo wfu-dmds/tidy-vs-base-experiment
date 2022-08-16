@@ -40,25 +40,13 @@ save_assessment <- function(username) {
   assessment_ids <- c("nervous-pre", "nervous-post", "q1", "q2", "q3")
   
   assess_response <- tibble::tibble(
+    group = "base",
     username = username,
-    question = assessment_ids,
-    response = c(
-      input[[
-        assessment_ids[1]
-      ]] %||% NA,
-      input[[
-        assessment_ids[2]
-      ]] %||% NA,
-      input[[
-        assessment_ids[3]
-      ]] %||% NA,
-      input[[
-        assessment_ids[4]
-      ]] %||% NA,
-      input[[
-        assessment_ids[5]
-      ]] %||% NA
-    )
+    nervous_pre = input[[assessment_ids[1]]] %||% NA,
+    nervous_post = input[[assessment_ids[2]]] %||% NA,
+    q1 = input[[assessment_ids[3]]] %||% NA,
+    q2 = input[[assessment_ids[4]]] %||% NA,
+    q3 = input[[assessment_ids[5]]] %||% NA
   )
   
   saveRDS(assess_response, file = glue::glue("assessment_{username}.rds"))
