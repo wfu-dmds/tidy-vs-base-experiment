@@ -1,8 +1,6 @@
 ---
 title: "Data Analysis in R"
-output: 
-  learnr::tutorial:
-     clean: true
+output: learnr::tutorial
 runtime: shiny_prerendered
 ---
 
