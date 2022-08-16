@@ -1,20 +1,16 @@
 ---
-title: "Tutorial"
+title: "Data Analysis in R"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
 
-```{r setup, include=FALSE}
-library(learnr)
-library(palmerpenguins)
-library(tidyverse)
-knitr::opts_chunk$set(echo = FALSE)
-
-penguins_no_nas <- penguins %>%
-  drop_na()
+```{r child = "setup.Rmd"}
 ```
 
+
 ## Introduction
+
+Welcome to a quick R primer and thank you for agreeing to participate in our study. When you finish the final section, you will see a "Complete Session" button. After clicking this, you will be redirected to receive your $10 Amazon gift card.
 
 The fundamental goal of statistics is to learn from data. This means we need to be able to explore, manipulate, and summarize our data! The purpose of this activity is to introduce several key skills for exploratory data analysis. In the process, you will learn how to work with R, a statistical programming language.
 
@@ -23,12 +19,11 @@ It is ok for this to feel daunting at the start! This activity is designed to he
 Before you start the activity, we have a question for you:
 
 ```{r qIntro}
-shiny::sliderInput(inputId = "nervous-pre",
+shiny::radioButtons(inputId = "nervous-pre",
                    label = "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?", 
-                   min = 1, 
-                   max = 10, 
-                   value = 5, 
-                   step = 1)
+                   choices = 1:10,
+                   selected = character(0),
+                   inline = TRUE)
 ```
 
 
@@ -229,8 +224,8 @@ Let's focus on the Chinstrap penguins. How do we do that? We can use the `subset
 
 Run the following code:
 
-```{r penguins-filter, exercise=TRUE}
-chinstrap_penguins <- subset(penguins_no_nas , species == "Chinstrap")
+```{r penguins-filter, exercise=TRUE, exercise.setup = "no-nas"}
+chinstrap_penguins <- subset(penguins_no_nas, species == "Chinstrap")
 
 dim(chinstrap_penguins)
 head(chinstrap_penguins)
@@ -352,7 +347,7 @@ chinstrap_penguins$bill_length_mm
 Okay, so we can get the column we want! This will print out all the bill lengths, though, which is not what we want. We want the mean bill length, which is calculated with the `mean` function in R. Run the following code, to calculate the mean bill length for Chinstrap penguins:
 
 
-```{r length, exercise=TRUE}
+```{r length, exercise=TRUE, exercise.setup = "no-nas"}
 chinstrap_penguins <- subset(penguins_no_nas , species == "Chinstrap")
 
 mean(chinstrap_penguins$bill_length_mm)
@@ -443,4 +438,10 @@ mean(illinois_counties$...)
 illinois_counties <- subset(midwest, state == "IL")
 
 mean(illinois_counties$poptotal)
+```
+
+```{r child = "assessment.Rmd"}
+```
+
+```{r child = "demographics.Rmd"}
 ```
