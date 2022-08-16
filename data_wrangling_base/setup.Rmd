@@ -19,19 +19,14 @@ penguins_no_nas <- penguins %>%
 
 ```{r setup, include = FALSE}
 rdrop2::drop_auth(rdstoken = "token.rds")
-access_username <- function() {
-  session <- getDefaultReactiveDomain()
-  
-  query <- shiny::parseQueryString(session$clientData$url_search)
-  
-  if (!base::is.null(query[["user_id"]])) {
-    user_id <- shinysurveys:::base_extract_user_id(query)
-  } else {
-    user_id <- "NO_USERNAME"
-  }
-  
-  return(user_id)
-}
+```
+
+
+```{r assessment, echo = FALSE, context = "server"}
+
+access_username <- reactive({
+  glue("{round(runif(1, 0, 100000))}_{Sys.time()}")
+})
 
 save_assessment <- function(username) {
   
@@ -75,10 +70,6 @@ update_assessments <- function() {
   )
 }
 
-```
-
-
-```{r assessment, echo = FALSE, context = "server"}
 
 update_assessments()
 
