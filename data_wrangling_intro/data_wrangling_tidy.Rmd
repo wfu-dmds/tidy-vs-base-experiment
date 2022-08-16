@@ -1,20 +1,17 @@
 ---
-title: "Tutorial"
-output: learnr::tutorial
+title: "Data Analysis in R"
+output: 
+  learnr::tutorial:
+     clean: true
 runtime: shiny_prerendered
 ---
 
-```{r setup, include=FALSE}
-library(learnr)
-library(palmerpenguins)
-library(tidyverse)
-knitr::opts_chunk$set(echo = FALSE)
-
-penguins_no_nas <- penguins %>%
-  drop_na()
+```{r child = "setup.Rmd"}
 ```
 
 ## Introduction
+
+Welcome to a quick R primer and thank you for agreeing to participate in our study. When you finish the final section, you will see a "Complete Session" button. After clicking this, you will be redirected to receive your $10 Amazon gift card.
 
 The fundamental goal of statistics is to learn from data. This means we need to be able to explore, manipulate, and summarize our data! The purpose of this activity is to introduce several key skills for exploratory data analysis. In the process, you will learn how to work with R, a statistical programming language.
 
@@ -23,12 +20,11 @@ It is ok for this to feel daunting at the start! This activity is designed to he
 Before you start the activity, we have a question for you:
 
 ```{r qIntro}
-shiny::sliderInput(inputId = "nervous-pre",
+shiny::radioButtons(inputId = "nervous-pre",
                    label = "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?", 
-                   min = 1, 
-                   max = 10, 
-                   value = 5, 
-                   step = 1)
+                   choices = 1:10,
+                   selected = character(0),
+                   inline = TRUE)
 ```
 
 
@@ -235,7 +231,7 @@ Let's focus on the Chinstrap penguins. How do we do that? We can use the `filter
 
 Run the following code:
 
-```{r penguins-filter, exercise=TRUE}
+```{r penguins-filter, exercise=TRUE, exercise.setup = "no-nas"}
 chinstrap_penguins <- penguins_no_nas %>% 
   filter(species == "Chinstrap")
 
@@ -353,7 +349,7 @@ Now that we have a subset of data, let's explore some variables! One part of exp
 Run the following code, to calculate the mean bill length for Chinstrap penguins:
 
 
-```{r length, exercise=TRUE}
+```{r length, exercise=TRUE, exercise.setup = "no-nas"}
 chinstrap_penguins <- penguins_no_nas %>%
   filter(species == "Chinstrap")
 
@@ -490,4 +486,10 @@ illinois_counties <- midwest %>%
 
 illinois_counties %>% 
   summarize(mean_pop = mean(poptotal))
+```
+
+```{r child = "assessment.Rmd"}
+```
+
+```{r child = "demographics.Rmd"}
 ```
