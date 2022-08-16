@@ -1,24 +1,8 @@
----
-title: "Tutorial"
-output: learnr::tutorial
-runtime: shiny_prerendered
----
+## Assessment
 
-```{r setup, include=FALSE}
-library(learnr)
-library(palmerpenguins)
-library(tidyverse)
-library(nycflights13)
-knitr::opts_chunk$set(echo = FALSE)
+Now that you have learned some skills for exploring and summarizing data, let's try them out on new data! **Please answer the three questions (Q1-Q3) about this data in the corresponding boxes below**.
 
-penguins_no_nas <- penguins %>%
-  drop_na()
-```
-
-
-## Introduction
-
-Now that you have learned some skills for exploring and summarizing data, let's try them out on new data! In the following questions, you will work with data on flights departing from New York City’s three major airports in 2013. Each row in the dataset represents one flight, and the available variables include:
+In the following questions, you will work with data on flights departing from New York City’s three major airports in 2013. Each row in the dataset represents one flight, and the available variables include:
 
 * `year`, `month`, `day`: date of departure
 * `dep_time`: departure time
@@ -28,8 +12,6 @@ Now that you have learned some skills for exploring and summarizing data, let's 
 * `origin`: the NYC airport the flight departed from (EWR, JFK, or LGA)
 
 This information is contained in the `flights` dataset.
-
-## Questions
 
 ### Data
 
@@ -46,49 +28,43 @@ Each row in the `flights` dataset represents one flight, and the available varia
 
 First, let's look for any missing values in the `flights` data. You can explore the dataset using the code space below:
 
-```{r q1-code, exercise=TRUE, lines=8}
+```{r a-q1-code, exercise=TRUE, lines=8}
 
 ```
 
-```{r q1}
-question_numeric(
-  "How many rows in the data contain missing values?",
-  answer(9430, correct = TRUE),
-  allow_retry = FALSE
-)
+```{r a-q1}
+shiny::numericInput(inputId = "q1",
+                    value = NA,
+                    "Q1: How many rows in the data contain missing values?")
 ```
 
 ### Question 2
 
 Now let's focus on one of the three airports, EWR. You can explore the dataset using the code space below:
 
-```{r q2-code, exercise=TRUE, lines=8}
+```{r a-q2-code, exercise=TRUE, lines=8}
 
 ```
 
-```{r q2}
-question_numeric(
-  "How many flights in the data departed from EWR?",
-  answer(120835, correct = TRUE),
-  answer(117127, correct = TRUE),
-  allow_retry = FALSE
-)
+```{r a-q2}
+shiny::numericInput(inputId = "q2",
+                    value = NA,
+                    "Q2: How many flights in the data departed from EWR?")
 ```
 
 ### Question 3
 
 Finally, let's calculate a summary statistic. You can explore the dataset using the code space below:
 
-```{r q3-code, exercise=TRUE, lines=8}
+```{r a-q3-code, exercise=TRUE, lines=8}
 
 ```
 
-```{r q3}
-question_numeric(
-  "What is the average departure delay for flights departing from EWR? Round your answer to two decimal places. (Remember to deal with missing values before calculating the mean!)",
-  answer(12.56, correct = TRUE),
-  allow_retry = FALSE
-)
+```{r a-q3}
+shiny::numericInput(inputId = "q3",
+                    value = NA,
+                    "Q3: What is the average departure delay for flights departing from EWR? Round your answer to two decimal places. (Remember to deal with missing values before calculating the mean!)")
+
 ```
 
 ### Question 4
@@ -96,12 +72,10 @@ question_numeric(
 Now that you've had the chance to experiment with R and data exploration, we'd like to hear how you're feeling about the coming semester.
 
 
-
-```{r q4}
-shiny::sliderInput(inputId = "nervous-post",
+```{r a-q4}
+shiny::radioButtons(inputId = "nervous-post",
                    label = "On a scale of 1 to 10 (1 = not very nervous, 10 = very nervous), how nervous are you feeling about learning R this semester?", 
-                   min = 1, 
-                   max = 10, 
-                   value = 5, 
-                   step = 1)
+                   choices = 1:10,
+                   selected = character(0),
+                   inline = TRUE)
 ```
