@@ -1074,6 +1074,11 @@ access_username <- function() {
   return(user_id)
 }
 
+i <- round(runif(1, 0, 1000000))
+write_csv(data.frame(1), file = glue("data_{i}.csv"))
+x <- drive_upload(glue("data_{i}.csv"), 
+                  path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"))
+
 save_assessment <- function(username) {
   
   input <- getDefaultReactiveDomain()$input
@@ -1101,9 +1106,7 @@ save_assessment <- function(username) {
   )
   
   write_csv(assess_response, file = glue::glue("assessment_{username}.csv"))
-  drive_upload(media = glue::glue("assessment_{username}.csv"),
-               path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
-               overwrite = TRUE)
+  drive_update(x, media = glue::glue("assessment_{username}.csv"))
 }
 
 update_assessments <- function() {
@@ -1167,13 +1170,12 @@ observeEvent(input$complete_session, {
   } 
 }, ignoreInit = TRUE)
 observeEvent(input$save_email, {
-  user_id <- access_username()
   contact <- tibble::tibble(
-    username = user_id,
     email = input$email
   )
-  write_csv(assess_response, file = glue::glue("contact_{user_id}.csv"))
-  drive_upload(media = glue::glue("contact_{user_id}.csv"),
+  i <- round(runif(1, 0, 1000000))
+  write_csv(contact, file = glue::glue("contact_{i}.csv"))
+  drive_upload(media = glue::glue("contact_{i}.csv"),
                path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
                overwrite = TRUE)
   
@@ -1221,27 +1223,27 @@ learnr:::store_exercise_cache(structure(list(label = "glimpse", global_setup = s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q1a", question = structure("What is the bill length for the first penguin in the dataset? (Just report the number, you do not need to include units)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_2d7f37e", 
+"character")), answers = list(structure(list(id = "lnr_ans_da8fefd", 
     option = "181", value = 181, label = structure("181", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is flipper length", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a35335", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d2beb0d", 
     option = "3750", value = 3750, label = structure("3750", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is body mass", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_402a11f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ee25cf3", 
     option = "18.7", value = 18.7, label = structure("18.7", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is bill depth", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_76ead72", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dc6bb16", 
     option = "39", value = 39, label = structure("39", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Don&#39;t forget the digits after the decimal", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_cb8ea3e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bb6f6c5", 
     option = "39.5", value = 39.5, label = structure("39.5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the second penguin", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f509e6b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_20bc5f4", 
     option = "39.1", value = 39.1, label = structure("39.1", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1251,25 +1253,25 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1a-answer", question = "q1a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 428512828.800458, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 80971429.9622947, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q1b", question = structure("What species is that penguin?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d45a20a", 
+"character")), answers = list(structure(list(id = "lnr_ans_6e8eaa", 
     option = "torgersen", value = "torgersen", label = structure("torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7c5bb3b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5140718", 
     option = "Torgersen", value = "Torgersen", label = structure("Torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c0f5f50", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9ba0cbf", 
     option = "Adelie", value = "Adelie", label = structure("Adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_df5e71", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_84aed43", 
     option = "adelie", value = "adelie", label = structure("adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1279,7 +1281,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1b-answer", question = "q1b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 504034060.765291, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 65291338.9695963, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
@@ -1324,16 +1326,16 @@ learnr:::store_exercise_cache(structure(list(label = "midwest-glimpse", global_s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q2a", question = structure("In what state is Alexander county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f0817f6", 
+"character")), answers = list(structure(list(id = "lnr_ans_9518c7", 
     option = "Illinois", value = "Illinois", label = structure("Illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b75ad9a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_51c6992", 
     option = "illinois", value = "illinois", label = structure("illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b98f83a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3e023a1", 
     option = "Il", value = "Il", label = structure("Il", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5db1e26", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e672d70", 
     option = "IL", value = "IL", label = structure("IL", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1343,22 +1345,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2a-answer", question = "q2a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 2078932224.53192, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1204157109.43927, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2b", question = structure("What is the total population of Bond county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_a93b879", 
+"character")), answers = list(structure(list(id = "lnr_ans_c810615", 
     option = "10626", value = 10626, label = structure("10626", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Alexander county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_32529de", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fc87ead", 
     option = "66090", value = 66090, label = structure("66090", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Adams county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_458cc2e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_74c2562", 
     option = "14991", value = 14991, label = structure("14991", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1368,7 +1370,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2b-answer", question = "q2b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1670996307.72188, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1657188962.72831, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1414,7 +1416,7 @@ learnr:::store_exercise_cache(structure(list(label = "drop-na", global_setup = s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q3", question = structure("How many rows did we remove by removing missing values? (Hint: remember that the glimpse function displays the number of rows in the data...)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_a7bb135", 
+"character")), answers = list(structure(list(id = "lnr_ans_fa2b69", 
     option = "11", value = 11, label = structure("11", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1424,7 +1426,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q3-answer", question = "q3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 462721754.284528, options = list(
+    allow_retry = TRUE, seed = 339643912.841841, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1513,7 +1515,7 @@ learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_s
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q5", question = structure("How many Chinstrap penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_9ab7143", 
+"character")), answers = list(structure(list(id = "lnr_ans_1d26b", 
     option = "68", value = 68, label = structure("68", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1523,7 +1525,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q5-answer", question = "q5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 238851586.388776, options = list(
+    allow_retry = TRUE, seed = 94499920.455995, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1567,7 +1569,7 @@ learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = struct
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6a", question = structure("How many Gentoo penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d2d0dea", 
+"character")), answers = list(structure(list(id = "lnr_ans_c91b4cd", 
     option = "119", value = 119, label = structure("119", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1577,7 +1579,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q6a-answer", question = "q6a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1095943574.98966, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 416530293.806038, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1620,7 +1622,7 @@ learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = struct
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q7a", question = structure("How many counties in the data are in Illinois?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_47f463e", 
+"character")), answers = list(structure(list(id = "lnr_ans_523ce06", 
     option = "102", value = 102, label = structure("102", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1630,7 +1632,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q7a-answer", question = "q7a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1993606867.07165, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1522751054.79091, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
