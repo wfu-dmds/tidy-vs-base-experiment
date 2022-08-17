@@ -1,7 +1,6 @@
 ```{r load-pkgs, include = FALSE}
 library(learnr)
 library(glue)
-library(shinysurveys)
 library(shinyalert)
 library(palmerpenguins)
 library(tidyverse)

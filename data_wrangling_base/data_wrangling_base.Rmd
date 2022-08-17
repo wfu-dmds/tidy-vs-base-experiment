@@ -366,7 +366,7 @@ Okay, so we can get the column we want! This will print out all the bill lengths
 
 
 ```{r length, exercise=TRUE, exercise.setup = "no-nas"}
-chinstrap_penguins <- subset(penguins_no_nas , species == "Chinstrap")
+chinstrap_penguins <- subset(penguins_no_nas, species == "Chinstrap")
 
 mean(chinstrap_penguins$bill_length_mm)
 ```
@@ -385,19 +385,19 @@ Modify the code above to calculate the mean bill length for *Gentoo* penguins. (
 ```
 
 ```{r q8-hint-1}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 mean(...)
 ```
 
 ```{r q8-hint-2}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 mean(gentoo_penguins$...)
 ```
 
 ```{r q8-hint-3}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 mean(gentoo_penguins$bill_length_mm)
 ```
@@ -411,19 +411,19 @@ Modify the code above to calculate the *median* *body mass* for Gentoo penguins.
 ```
 
 ```{r q9-hint-1}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 median(...)
 ```
 
 ```{r q9-hint-2}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 mean(gentoo_penguins$...)
 ```
 
 ```{r q9-hint-3}
-gentoo_penguins <- subset(penguins_no_nas , species == "Gentoo")
+gentoo_penguins <- subset(penguins_no_nas, species == "Gentoo")
 
 mean(gentoo_penguins$body_mass_g)
 ```
