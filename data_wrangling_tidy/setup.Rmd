@@ -18,8 +18,7 @@ penguins_no_nas <- penguins %>%
 ```
 
 ```{r setup, include = FALSE}
-drive_auth(path = "creds.apps.googleusercontent.com.json",
-           email = "mcgowald@wfu.edu")
+drive_auth(path = "creds.apps.googleusercontent.com.json")
 ```
 
 
@@ -67,7 +66,7 @@ save_assessment <- function(username) {
   
   write_csv(assess_response, file = glue::glue("assessment_{username}.csv"))
   drive_upload(media = glue::glue("assessment_{username}.csv"),
-               path = "teaching-r/data/",
+               path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
                overwrite = TRUE)
 }
 
@@ -139,7 +138,7 @@ observeEvent(input$save_email, {
   )
   write_csv(assess_response, file = glue::glue("contact_{user_id}.csv"))
   drive_upload(media = glue::glue("contact_{user_id}.csv"),
-               path = "teaching-r/data/",
+               path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
                overwrite = TRUE)
   
   removeModal()
