@@ -1,6 +1,5 @@
 ```{r load-pkgs, include = FALSE}
 library(learnr)
-library(rdrop2)
 library(glue)
 library(shinysurveys)
 library(shinyalert)
@@ -8,6 +7,7 @@ library(palmerpenguins)
 library(tidyverse)
 library(nycflights13)
 library(rlang)
+library(googledrive)
 
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -18,15 +18,27 @@ penguins_no_nas <- penguins %>%
 ```
 
 ```{r setup, include = FALSE}
-rdrop2::drop_auth(rdstoken = "token.rds")
+drive_auth_configure(
+  path = "creds.apps.googleusercontent.com.json"
+)
 ```
 
 
 ```{r assessment, echo = FALSE, context = "server"}
 
-access_username <- reactive({
-  glue("{round(runif(1, 0, 100000))}_{Sys.time()}")
-})
+access_username <- function() {
+  session <- getDefaultReactiveDomain()
+  
+  query <- shiny::parseQueryString(session$clientData$url_search)
+  
+  if (!base::is.null(query[["user_id"]])) {
+    user_id <- shinysurveys:::base_extract_user_id(query)
+  } else {
+    user_id <- "NO_USERNAME"
+  }
+  
+  return(user_id)
+}
 
 save_assessment <- function(username) {
   
@@ -54,9 +66,10 @@ save_assessment <- function(username) {
     completed_data_analysis = input[["completed_data_analysis"]] %||% NA_character_
   )
   
-  saveRDS(assess_response, file = glue::glue("assessment_{username}.rds"))
-  rdrop2::drop_upload(file = glue::glue("assessment_{username}.rds"),
-                      path = "/D'Agostino McGowan Data Science Lab/2022/learnr_results/")
+  write_csv(assess_response, file = glue::glue("assessment_{username}.csv"))
+  drive_upload(media = glue::glue("assessment_{username}.csv"),
+               path = "teaching-r/data/",
+               overwrite = TRUE)
 }
 
 update_assessments <- function() {
@@ -125,9 +138,10 @@ observeEvent(input$save_email, {
     username = user_id,
     email = input$email
   )
-  saveRDS(contact, file = glue::glue("contact_{user_id}.rds"))
-  rdrop2::drop_upload(file = glue::glue("contact_{user_id}.rds"),
-                      path = "/D'Agostino McGowan Data Science Lab/2022/learnr_results/")
+  write_csv(assess_response, file = glue::glue("contact_{user_id}.csv"))
+  drive_upload(media = glue::glue("contact_{user_id}.csv"),
+               path = "teaching-r/data/",
+               overwrite = TRUE)
   
   removeModal()
   showModal(modalDialog("Thank you for participating! Please close your browser window now.", footer = NULL))
