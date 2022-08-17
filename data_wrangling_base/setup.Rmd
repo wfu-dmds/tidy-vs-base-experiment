@@ -18,9 +18,8 @@ penguins_no_nas <- penguins %>%
 ```
 
 ```{r setup, include = FALSE}
-drive_auth_configure(
-  path = "creds.apps.googleusercontent.com.json"
-)
+drive_auth(path = "creds.apps.googleusercontent.com.json",
+           email = "mcgowald@wfu.edu")
 ```
 
 
