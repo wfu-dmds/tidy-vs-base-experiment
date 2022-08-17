@@ -357,6 +357,19 @@ as the left hand side”. So
 <div id="section-your-turn-missing-values-in-the-midwest-data"
 class="section level2">
 <h2>Your turn! Missing values in the Midwest data?</h2>
+<div id="section-data-2" class="section level3">
+<h3>Data</h3>
+<p>We have information on 437 midwest counties in Illinois, Indiana,
+Michigan, Ohio, and Wisconsin. The dataset is called
+<code>midwest</code>, and the first few variables are:</p>
+<ul>
+<li><code>PID</code>: a unique county identifying number</li>
+<li><code>county</code>: the county name</li>
+<li><code>state</code>: state which the county belongs to</li>
+<li><code>area</code>: area of the county (units unknown)</li>
+<li><code>poptotal</code>: total population of the county</li>
+</ul>
+</div>
 <div id="section-question-4" class="section level3">
 <h3>Question 4</h3>
 <p>Use the <code>drop_na</code> function to remove rows with
@@ -501,14 +514,25 @@ glimpse(gentoo_penguins)</code></pre>
 </div>
 <div id="section-your-turn-counties-in-illinois" class="section level2">
 <h2>Your turn! Counties in Illinois</h2>
-<p>In the <code>midwest</code> data, there are five states: Illinois
-(IL), Indiana (IN), Michigan (MI), Ohio (OH), and Wisconsin (WI).</p>
+<div id="section-data-3" class="section level3">
+<h3>Data</h3>
+<p>We have information on 437 midwest counties in Illinois, Indiana,
+Michigan, Ohio, and Wisconsin. The dataset is called
+<code>midwest</code>, and the first few variables are:</p>
+<ul>
+<li><code>PID</code>: a unique county identifying number</li>
+<li><code>county</code>: the county name</li>
+<li><code>state</code>: state which the county belongs to</li>
+<li><code>area</code>: area of the county (units unknown)</li>
+<li><code>poptotal</code>: total population of the county</li>
+</ul>
+</div>
 <div id="section-question-7" class="section level3">
 <h3>Question 7</h3>
 <p>Using the <code>filter</code> function, create a dataset containing
-only the counties in Illinois. Call it <code>illinois_counties</code>.
-(Click the <em>Hints</em> button if you need a hint. You can see more
-hints by clicking <em>Next hint</em>.)</p>
+only the counties in Illinois (IL). Call it
+<code>illinois_counties</code>. (Click the <em>Hints</em> button if you
+need a hint. You can see more hints by clicking <em>Next hint</em>.)</p>
 <div class="tutorial-exercise" data-label="q7" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
@@ -683,12 +707,25 @@ gentoo_penguins %&gt;%
 <div id="section-your-turn-average-county-population-in-illinois"
 class="section level2">
 <h2>Your turn! Average county population in Illinois</h2>
+<div id="section-data-4" class="section level3">
+<h3>Data</h3>
+<p>We have information on 437 midwest counties in Illinois, Indiana,
+Michigan, Ohio, and Wisconsin. The dataset is called
+<code>midwest</code>, and the first few variables are:</p>
+<ul>
+<li><code>PID</code>: a unique county identifying number</li>
+<li><code>county</code>: the county name</li>
+<li><code>state</code>: state which the county belongs to</li>
+<li><code>area</code>: area of the county (units unknown)</li>
+<li><code>poptotal</code>: total population of the county</li>
+</ul>
 <p>Previously, you used the <code>filter</code> function to create a
 dataset (<code>illinois_counties</code>) containing just the Illinois
 counties from the <code>midwest</code> data. Now let’s calculate the
 average population of Illinois counties. (Click the <em>Hints</em>
 button if you need another hint. You can see more hints by clicking
 <em>Next hint</em>.)</p>
+</div>
 <div id="section-question-10" class="section level3">
 <h3>Question 10</h3>
 <p>Using the <code>summarize</code> function, calculate the average
@@ -759,7 +796,7 @@ JFK, or LGA)</li>
 </ul>
 <p>This information is contained in the <code>flights</code>
 dataset.</p>
-<div id="section-data-2" class="section level3">
+<div id="section-data-5" class="section level3">
 <h3>Data</h3>
 <p>Each row in the <code>flights</code> dataset represents one flight,
 and the available variables include:</p>
@@ -1223,27 +1260,27 @@ learnr:::store_exercise_cache(structure(list(label = "glimpse", global_setup = s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q1a", question = structure("What is the bill length for the first penguin in the dataset? (Just report the number, you do not need to include units)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_da8fefd", 
+"character")), answers = list(structure(list(id = "lnr_ans_5d991fd", 
     option = "181", value = 181, label = structure("181", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is flipper length", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d2beb0d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3f7cab", 
     option = "3750", value = 3750, label = structure("3750", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is body mass", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ee25cf3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_69f839d", 
     option = "18.7", value = 18.7, label = structure("18.7", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is bill depth", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dc6bb16", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_413d0bd", 
     option = "39", value = 39, label = structure("39", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Don&#39;t forget the digits after the decimal", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bb6f6c5", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a44c7", 
     option = "39.5", value = 39.5, label = structure("39.5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the second penguin", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_20bc5f4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7ea6b33", 
     option = "39.1", value = 39.1, label = structure("39.1", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1253,25 +1290,25 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1a-answer", question = "q1a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 80971429.9622947, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1890462784.61968, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q1b", question = structure("What species is that penguin?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_6e8eaa", 
+"character")), answers = list(structure(list(id = "lnr_ans_fbc31f", 
     option = "torgersen", value = "torgersen", label = structure("torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5140718", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c71613e", 
     option = "Torgersen", value = "Torgersen", label = structure("Torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9ba0cbf", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7a58e4c", 
     option = "Adelie", value = "Adelie", label = structure("Adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_84aed43", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d6573e5", 
     option = "adelie", value = "adelie", label = structure("adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1281,7 +1318,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1b-answer", question = "q1b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 65291338.9695963, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1981780922.07716, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
@@ -1326,16 +1363,16 @@ learnr:::store_exercise_cache(structure(list(label = "midwest-glimpse", global_s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q2a", question = structure("In what state is Alexander county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_9518c7", 
+"character")), answers = list(structure(list(id = "lnr_ans_70d0a90", 
     option = "Illinois", value = "Illinois", label = structure("Illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_51c6992", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e7bcd3e", 
     option = "illinois", value = "illinois", label = structure("illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3e023a1", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4a9aa0d", 
     option = "Il", value = "Il", label = structure("Il", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e672d70", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b77daba", 
     option = "IL", value = "IL", label = structure("IL", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1345,22 +1382,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2a-answer", question = "q2a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1204157109.43927, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 665431209.690134, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2b", question = structure("What is the total population of Bond county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_c810615", 
+"character")), answers = list(structure(list(id = "lnr_ans_939140", 
     option = "10626", value = 10626, label = structure("10626", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Alexander county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fc87ead", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_777e025", 
     option = "66090", value = 66090, label = structure("66090", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Adams county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_74c2562", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_eb188ad", 
     option = "14991", value = 14991, label = structure("14991", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1370,7 +1407,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2b-answer", question = "q2b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1657188962.72831, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 701377808.673396, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1416,7 +1453,7 @@ learnr:::store_exercise_cache(structure(list(label = "drop-na", global_setup = s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q3", question = structure("How many rows did we remove by removing missing values? (Hint: remember that the glimpse function displays the number of rows in the data...)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_fa2b69", 
+"character")), answers = list(structure(list(id = "lnr_ans_5790525", 
     option = "11", value = 11, label = structure("11", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1426,7 +1463,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q3-answer", question = "q3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 339643912.841841, options = list(
+    allow_retry = TRUE, seed = 544142144.246614, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1482,8 +1519,8 @@ output$`tutorial-exercise-penguins-filter-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
-    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
         opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
         list(label = "penguins-filter", code = "chinstrap_penguins <- penguins_no_nas %>% \n  filter(species == \"Chinstrap\")\n\nglimpse(chinstrap_penguins)", 
             opts = list(label = "\"penguins-filter\"", exercise = "TRUE", 
@@ -1515,7 +1552,7 @@ learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_s
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q5", question = structure("How many Chinstrap penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_1d26b", 
+"character")), answers = list(structure(list(id = "lnr_ans_cbccc42", 
     option = "68", value = 68, label = structure("68", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1525,7 +1562,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q5-answer", question = "q5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 94499920.455995, options = list(
+    allow_retry = TRUE, seed = 400141607.81367, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1540,18 +1577,20 @@ output$`tutorial-exercise-q6-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "q6", code = "", opts = list(label = "\"q6\"", 
-        exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
-    options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "data_wrangling_tidy_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "q6", code = "", opts = list(label = "\"q6\"", 
+            exercise = "TRUE", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_tidy_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1560,8 +1599,8 @@ learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = struct
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "q6", exercise = TRUE, code = "", 
-        out.width.px = 624, out.height.px = 384, params.src = "q6, exercise=TRUE", 
+        max.print = 1000, label = "q6", exercise = TRUE, exercise.setup = "no-nas", 
+        code = "", out.width.px = 624, out.height.px = 384, params.src = "q6, exercise=TRUE, exercise.setup = \"no-nas\"", 
         fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
@@ -1569,7 +1608,7 @@ learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = struct
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6a", question = structure("How many Gentoo penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_c91b4cd", 
+"character")), answers = list(structure(list(id = "lnr_ans_fad8b60", 
     option = "119", value = 119, label = structure("119", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1579,7 +1618,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q6a-answer", question = "q6a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 416530293.806038, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 601705182.719809, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1594,18 +1633,20 @@ output$`tutorial-exercise-q7-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "q7", code = "", opts = list(label = "\"q7\"", 
-        exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
-    options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "data_wrangling_tidy_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "q7", code = "", opts = list(label = "\"q7\"", 
+            exercise = "TRUE", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_tidy_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1614,15 +1655,15 @@ learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = struct
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "q7", exercise = TRUE, code = "", 
-        out.width.px = 624, out.height.px = 384, params.src = "q7, exercise=TRUE", 
+        max.print = 1000, label = "q7", exercise = TRUE, exercise.setup = "no-nas", 
+        code = "", out.width.px = 624, out.height.px = 384, params.src = "q7, exercise=TRUE, exercise.setup = \"no-nas\"", 
         fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q7a", question = structure("How many counties in the data are in Illinois?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_523ce06", 
+"character")), answers = list(structure(list(id = "lnr_ans_703d69f", 
     option = "102", value = 102, label = structure("102", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1632,7 +1673,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q7a-answer", question = "q7a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1522751054.79091, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 421468517.303738, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1647,8 +1688,8 @@ output$`tutorial-exercise-length-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "length", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
-    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
         opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
         list(label = "length", code = "chinstrap_penguins <- penguins_no_nas %>%\n  filter(species == \"Chinstrap\")\n\nchinstrap_penguins %>%\n  summarize(mean_bill_length = mean(bill_length_mm))", 
             opts = list(label = "\"length\"", exercise = "TRUE", 
@@ -1689,10 +1730,13 @@ output$`tutorial-exercise-q8-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "q8", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "q8", code = "", opts = list(label = "\"q8\"", 
-        exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("gentoo_penguins <- penguins_no_nas %>%", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "q8", code = "", opts = list(label = "\"q8\"", 
+            exercise = "TRUE", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure(c("gentoo_penguins <- penguins_no_nas %>%", 
     "  filter(species == \"Gentoo\")", "", "gentoo_penguins %>%", 
     "  summarize(mean_bill_length = mean(bill_length_mm))"), chunk_opts = list(
         label = "q8-solution")), tests = NULL, options = list(
@@ -1711,8 +1755,8 @@ learnr:::store_exercise_cache(structure(list(label = "q8", global_setup = struct
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "q8", exercise = TRUE, code = "", 
-        out.width.px = 624, out.height.px = 384, params.src = "q8, exercise=TRUE", 
+        max.print = 1000, label = "q8", exercise = TRUE, exercise.setup = "no-nas", 
+        code = "", out.width.px = 624, out.height.px = 384, params.src = "q8, exercise=TRUE, exercise.setup = \"no-nas\"", 
         fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
@@ -1727,10 +1771,13 @@ output$`tutorial-exercise-q9-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "q9", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "q9", code = "", opts = list(label = "\"q9\"", 
-        exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("gentoo_penguins <- penguins_no_nas %>%", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "q9", code = "", opts = list(label = "\"q9\"", 
+            exercise = "TRUE", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure(c("gentoo_penguins <- penguins_no_nas %>%", 
     "  filter(species == \"Gentoo\")", "", "gentoo_penguins %>%", 
     "  summarize(median_body_mass = median(body_mass_g))"), chunk_opts = list(
         label = "q9-solution")), tests = NULL, options = list(
@@ -1749,8 +1796,8 @@ learnr:::store_exercise_cache(structure(list(label = "q9", global_setup = struct
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "q9", exercise = TRUE, code = "", 
-        out.width.px = 624, out.height.px = 384, params.src = "q9, exercise=TRUE", 
+        max.print = 1000, label = "q9", exercise = TRUE, exercise.setup = "no-nas", 
+        code = "", out.width.px = 624, out.height.px = 384, params.src = "q9, exercise=TRUE, exercise.setup = \"no-nas\"", 
         fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
@@ -1765,18 +1812,20 @@ output$`tutorial-exercise-q10-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "q10", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "q10", code = "", opts = list(label = "\"q10\"", 
-        exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
-    options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "data_wrangling_tidy_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "q10", code = "", opts = list(label = "\"q10\"", 
+            exercise = "TRUE", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_tidy_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1785,8 +1834,8 @@ learnr:::store_exercise_cache(structure(list(label = "q10", global_setup = struc
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "q10", exercise = TRUE, code = "", 
-        out.width.px = 624, out.height.px = 384, params.src = "q10, exercise=TRUE", 
+        max.print = 1000, label = "q10", exercise = TRUE, exercise.setup = "no-nas", 
+        code = "", out.width.px = 624, out.height.px = 384, params.src = "q10, exercise=TRUE, exercise.setup = \"no-nas\"", 
         fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
@@ -1838,18 +1887,20 @@ output$`tutorial-exercise-a-q2-code-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "a-q2-code", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "a-q2-code", code = "", opts = list(label = "\"a-q2-code\"", 
-        exercise = "TRUE", lines = "8"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
-    options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "data_wrangling_tidy_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "a-q2-code", code = "", opts = list(label = "\"a-q2-code\"", 
+            exercise = "TRUE", lines = "8", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_tidy_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1859,9 +1910,9 @@ learnr:::store_exercise_cache(structure(list(label = "a-q2-code", global_setup =
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "a-q2-code", exercise = TRUE, 
-        lines = 8, code = "", out.width.px = 624, out.height.px = 384, 
-        params.src = "a-q2-code, exercise=TRUE, lines=8", fig.num = 0L, 
-        exercise.df_print = "paged", exercise.checker = "NULL"), 
+        lines = 8, exercise.setup = "no-nas", code = "", out.width.px = 624, 
+        out.height.px = 384, params.src = "a-q2-code, exercise=TRUE, lines=8, exercise.setup = \"no-nas\"", 
+        fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
 
@@ -1875,18 +1926,20 @@ output$`tutorial-exercise-a-q3-code-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "a-q3-code", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
-    label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "a-q3-code", code = "", opts = list(label = "\"a-q3-code\"", 
-        exercise = "TRUE", lines = "8"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
-    options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "data_wrangling_tidy_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+    chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()\n\nmidwest_no_nas <- midwest %>%\n  drop_na()\n\nflights_no_nas <- flights %>%\n  drop_na()", 
+        opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
+        list(label = "a-q3-code", code = "", opts = list(label = "\"a-q3-code\"", 
+            exercise = "TRUE", lines = "8", exercise.setup = "\"no-nas\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_tidy_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_tidy_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1896,9 +1949,9 @@ learnr:::store_exercise_cache(structure(list(label = "a-q3-code", global_setup =
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "a-q3-code", exercise = TRUE, 
-        lines = 8, code = "", out.width.px = 624, out.height.px = 384, 
-        params.src = "a-q3-code, exercise=TRUE, lines=8", fig.num = 0L, 
-        exercise.df_print = "paged", exercise.checker = "NULL"), 
+        lines = 8, exercise.setup = "no-nas", code = "", out.width.px = 624, 
+        out.height.px = 384, params.src = "a-q3-code, exercise=TRUE, lines=8, exercise.setup = \"no-nas\"", 
+        fig.num = 0L, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "3"), class = "tutorial_exercise"))
 </script>
  <!--html_preserve-->
@@ -1908,7 +1961,7 @@ learnr:::store_exercise_cache(structure(list(label = "a-q3-code", global_setup =
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92]}},"value":[{"type":"character","attributes":{},"value":["askpass","assertthat","backports","base","broom","bslib","cellranger","checkmate","cli","colorspace","compiler","crayon","curl","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","fontawesome","forcats","fs","gargle","generics","ggplot2","glue","googledrive","graphics","grDevices","grid","gtable","haven","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","nycflights13","openssl","palmerpenguins","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyalert","shinysurveys","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.1","0.2.1","1.4.1","4.1.2","1.0.0","0.3.1","1.1.0","2.0.0","3.2.0","2.0-2","4.1.2","1.4.2","4.3.2","4.1.2","1.1.2","2.1.1","0.6.29","1.0.8","0.3.2","0.15","1.0.2","1.1.0","0.2.2","0.5.1","1.5.2","1.2.0","0.1.2","3.3.5","1.6.2","2.0.0","4.1.2","4.1.2","4.1.2","0.3.0","2.4.3","1.1.1","0.5.2","1.5.4","1.6.5","1.4.2","0.1.4","1.7.3","1.37","1.3.0","0.10.5.9000","1.0.1","1.8.0","2.0.2","1.1","4.1.2","0.12","0.1.8","0.5.0","1.0.2","1.4.6","0.1.1","1.7.0","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.8","2.1.2","1.3.1","2.0.1","1.0.2","2.11","2.0.2","0.13","1.0.2","0.4.0.9000","1.1.1","1.7.1","3.0.0","0.2.0","4.1.2","1.7.6","1.4.0","3.1.6","1.2.0","1.1.1","1.3.1","4.1.2","0.2.0","1.2.2","4.1.2","0.3.8","2.4.3","0.29","1.3.3","1.8-4","2.3.4"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91]}},"value":[{"type":"character","attributes":{},"value":["askpass","assertthat","backports","base","broom","bslib","cellranger","checkmate","cli","colorspace","compiler","crayon","curl","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","fontawesome","forcats","fs","gargle","generics","ggplot2","glue","googledrive","graphics","grDevices","grid","gtable","haven","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","nycflights13","openssl","palmerpenguins","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyalert","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.1","0.2.1","1.4.1","4.1.2","1.0.0","0.3.1","1.1.0","2.0.0","3.2.0","2.0-2","4.1.2","1.4.2","4.3.2","4.1.2","1.1.2","2.1.1","0.6.29","1.0.8","0.3.2","0.15","1.0.2","1.1.0","0.2.2","0.5.1","1.5.2","1.2.0","0.1.2","3.3.5","1.6.2","2.0.0","4.1.2","4.1.2","4.1.2","0.3.0","2.4.3","1.1.1","0.5.2","1.5.4","1.6.5","1.4.2","0.1.4","1.7.3","1.37","1.3.0","0.10.5.9000","1.0.1","1.8.0","2.0.2","1.1","4.1.2","0.12","0.1.8","0.5.0","1.0.2","1.4.6","0.1.1","1.7.0","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.8","2.1.2","1.3.1","2.0.1","1.0.2","2.11","2.0.2","0.13","1.0.2","0.4.0.9000","1.1.1","1.7.1","3.0.0","4.1.2","1.7.6","1.4.0","3.1.6","1.2.0","1.1.1","1.3.1","4.1.2","0.2.0","1.2.2","4.1.2","0.3.8","2.4.3","0.29","1.3.3","1.8-4","2.3.4"]}]}]}
 </script>
 <!--/html_preserve-->
 </div>
