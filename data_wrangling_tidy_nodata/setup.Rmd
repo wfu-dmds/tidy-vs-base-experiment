@@ -1,0 +1,18 @@
+```{r load-pkgs, include = FALSE}
+library(learnr)
+library(rdrop2)
+library(glue)
+library(shinysurveys)
+library(shinyalert)
+library(palmerpenguins)
+library(tidyverse)
+library(nycflights13)
+library(rlang)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r no-nas, echo = FALSE}
+penguins_no_nas <- penguins %>%
+  drop_na()
+```
