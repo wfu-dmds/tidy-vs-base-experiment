@@ -15,6 +15,12 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r no-nas, echo = FALSE}
 penguins_no_nas <- penguins %>%
   drop_na()
+
+midwest_no_nas <- midwest %>%
+  drop_na()
+
+flights_no_nas <- flights %>%
+  drop_na()
 ```
 
 ```{r setup, include = FALSE}

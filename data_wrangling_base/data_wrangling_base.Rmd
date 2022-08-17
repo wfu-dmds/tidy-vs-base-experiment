@@ -181,13 +181,23 @@ Finally, we need to save the result. The `<-` is like "Save As...", and means "t
 
 ```{r q3}
 question_numeric(
-  "How many rows did we remove by removing missing values? (Hint: remember that the glimpse function displays the number of rows in the data...)",
+  "How many rows did we remove by removing missing values?",
   answer(11, correct = TRUE),
   allow_retry = TRUE
 )
 ```
 
 ## Your turn! Missing values in the Midwest data?
+
+### Data
+
+We have information on 437 midwest counties in Illinois, Indiana, Michigan, Ohio, and Wisconsin. The dataset is called `midwest`, and the first few variables are:
+
+* `PID`: a unique county identifying number
+* `county`: the county name
+* `state`: state which the county belongs to
+* `area`: area of the county (units unknown)
+* `poptotal`: total population of the county
 
 ### Question 4
 
@@ -250,7 +260,7 @@ question_numeric(
 
 Modify the code above to create a new dataset containing only the Gentoo penguins. Call it `gentoo_penguins`. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
 
-```{r q6, exercise=TRUE}
+```{r q6, exercise=TRUE, exercise.setup = "no-nas"}
 
 ```
 
@@ -286,13 +296,21 @@ question_numeric(
 
 ## Your turn! Counties in Illinois
 
-In the `midwest` data, there are five states: Illinois (IL), Indiana (IN), Michigan (MI), Ohio (OH), and Wisconsin (WI).
+### Data
+
+We have information on 437 midwest counties in Illinois, Indiana, Michigan, Ohio, and Wisconsin. The dataset is called `midwest`, and the first few variables are:
+
+* `PID`: a unique county identifying number
+* `county`: the county name
+* `state`: state which the county belongs to
+* `area`: area of the county (units unknown)
+* `poptotal`: total population of the county
 
 ### Question 7
 
-Using the `subset` function, create a dataset containing only the counties in Illinois. Call it `illinois_counties`. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
+Using the `subset` function, create a dataset containing only the counties in Illinois (IL). Call it `illinois_counties`. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
 
-```{r q7, exercise=TRUE}
+```{r q7, exercise=TRUE, exercise.setup = "no-nas"}
 
 ```
 
@@ -362,7 +380,7 @@ This tells us that the mean bill length for Chinstrap penguins in the data is 48
 
 Modify the code above to calculate the mean bill length for *Gentoo* penguins. (Click the *Hints* button if you need a hint. You can see more hints by clicking *Next hint*.)
 
-```{r q8, exercise=TRUE}
+```{r q8, exercise=TRUE, exercise.setup = "no-nas"}
 
 ```
 
@@ -388,7 +406,7 @@ mean(gentoo_penguins$bill_length_mm)
 
 Modify the code above to calculate the *median* *body mass* for Gentoo penguins. *Hint: the `median` function calculates medians in R* (Click the *Hints* button if you need another hint. You can see more hints by clicking *Next hint*.)
   
-```{r q9, exercise=TRUE}
+```{r q9, exercise=TRUE, exercise.setup = "no-nas"}
 
 ```
 
@@ -412,13 +430,23 @@ mean(gentoo_penguins$body_mass_g)
 
 ## Your turn! Average county population in Illinois
 
+### Data
+
+We have information on 437 midwest counties in Illinois, Indiana, Michigan, Ohio, and Wisconsin. The dataset is called `midwest`, and the first few variables are:
+
+* `PID`: a unique county identifying number
+* `county`: the county name
+* `state`: state which the county belongs to
+* `area`: area of the county (units unknown)
+* `poptotal`: total population of the county
+
 Previously, you used the `subset` function to create a dataset (`illinois_counties`) containing just the Illinois counties from the `midwest` data. Now let's calculate the average population of Illinois counties. (Click the *Hints* button if you need another hint. You can see more hints by clicking *Next hint*.)
 
 ### Question 10
 
 Using the `mean` function, calculate the average total population of counties in Illinois.
 
-```{r q10, exercise=TRUE}
+```{r q10, exercise=TRUE, exercise.setup = "no-nas"}
 
 ```
 
