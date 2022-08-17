@@ -18,7 +18,6 @@ penguins_no_nas <- penguins %>%
 ```
 
 ```{r setup, include = FALSE}
-options(gargle_verbosity = "debug")
 drive_auth(path = "creds.apps.googleusercontent.com.json")
 ```
 
@@ -38,6 +37,11 @@ access_username <- function() {
   
   return(user_id)
 }
+
+i <- round(runif(1, 0, 1000000))
+write_csv(data.frame(1), file = glue("data_{i}.csv"))
+x <- drive_upload(glue("data_{i}.csv"), 
+                  path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"))
 
 save_assessment <- function(username) {
   
@@ -66,9 +70,7 @@ save_assessment <- function(username) {
   )
   
   write_csv(assess_response, file = glue::glue("assessment_{username}.csv"))
-  drive_upload(media = glue::glue("assessment_{username}.csv"),
-               path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
-               overwrite = TRUE)
+  drive_update(x, media = glue::glue("assessment_{username}.csv"))
 }
 
 update_assessments <- function() {
@@ -132,14 +134,12 @@ observeEvent(input$complete_session, {
   } 
 }, ignoreInit = TRUE)
 observeEvent(input$save_email, {
-  user_id <- access_username()
   contact <- tibble::tibble(
-    username = user_id,
     email = input$email
   )
-  
-  write_csv(assess_response, file = glue::glue("contact_{user_id}.csv"))
-  drive_upload(media = glue::glue("contact_{user_id}.csv"),
+  i <- round(runif(1, 0, 1000000))
+  write_csv(contact, file = glue::glue("contact_{i}.csv"))
+  drive_upload(media = glue::glue("contact_{i}.csv"),
                path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
                overwrite = TRUE)
   

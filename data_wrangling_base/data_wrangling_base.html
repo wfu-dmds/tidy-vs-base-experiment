@@ -996,7 +996,6 @@ session$onSessionEnded(function() {
 
 
 <script type="application/shiny-prerendered" data-context="server-start">
-options(gargle_verbosity = "debug")
 drive_auth(path = "creds.apps.googleusercontent.com.json")
 </script>
  
@@ -1015,6 +1014,11 @@ access_username <- function() {
   
   return(user_id)
 }
+
+i <- round(runif(1, 0, 1000000))
+write_csv(data.frame(1), file = glue("data_{i}.csv"))
+x <- drive_upload(glue("data_{i}.csv"), 
+                  path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"))
 
 save_assessment <- function(username) {
   
@@ -1043,9 +1047,7 @@ save_assessment <- function(username) {
   )
   
   write_csv(assess_response, file = glue::glue("assessment_{username}.csv"))
-  drive_upload(media = glue::glue("assessment_{username}.csv"),
-               path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
-               overwrite = TRUE)
+  drive_update(x, media = glue::glue("assessment_{username}.csv"))
 }
 
 update_assessments <- function() {
@@ -1109,14 +1111,12 @@ observeEvent(input$complete_session, {
   } 
 }, ignoreInit = TRUE)
 observeEvent(input$save_email, {
-  user_id <- access_username()
   contact <- tibble::tibble(
-    username = user_id,
     email = input$email
   )
-  
-  write_csv(assess_response, file = glue::glue("contact_{user_id}.csv"))
-  drive_upload(media = glue::glue("contact_{user_id}.csv"),
+  i <- round(runif(1, 0, 1000000))
+  write_csv(contact, file = glue::glue("contact_{i}.csv"))
+  drive_upload(media = glue::glue("contact_{i}.csv"),
                path = as_id("1fUCk_FXTulZZ_TCvWfMR5oMxiz5Os0do"),
                overwrite = TRUE)
   
@@ -1134,13 +1134,12 @@ output$`tutorial-exercise-dim-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "dim", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "dim", code = "dim(penguins)", 
-        opts = list(label = "\"dim\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+learnr:::store_exercise_cache(structure(list(label = "dim", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "dim", code = "dim(penguins)", opts = list(label = "\"dim\"", 
+        exercise = "TRUE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
         comment = NA, highlight = FALSE, size = "normalsize", 
         background = "#F7F7F7", strip.white = TRUE, cache = 0, 
@@ -1171,11 +1170,10 @@ output$`tutorial-exercise-head-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "head", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "head", code = "head(penguins)", 
-        opts = list(label = "\"head\"", exercise = "TRUE"), engine = "r")), 
+learnr:::store_exercise_cache(structure(list(label = "head", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "head", code = "head(penguins)", opts = list(
+        label = "\"head\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
@@ -1202,27 +1200,27 @@ learnr:::store_exercise_cache(structure(list(label = "head", global_setup = stru
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q1a", question = structure("What is the bill length for the first penguin in the dataset? (Just report the number, you do not need to include units)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_1d4af49", 
+"character")), answers = list(structure(list(id = "lnr_ans_ad62de8", 
     option = "181", value = 181, label = structure("181", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is flipper length", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b8b459b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9bc8ef2", 
     option = "3750", value = 3750, label = structure("3750", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is body mass", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_696af12", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_38e1b2c", 
     option = "18.7", value = 18.7, label = structure("18.7", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is bill depth", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e41a14d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_66bd163", 
     option = "39", value = 39, label = structure("39", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Don&#39;t forget the digits after the decimal", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dff7ce2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_18e8ce", 
     option = "39.5", value = 39.5, label = structure("39.5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the second penguin", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1bc6dac", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a00158d", 
     option = "39.1", value = 39.1, label = structure("39.1", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1232,25 +1230,25 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1a-answer", question = "q1a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 15789492.4926474, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 125950235.94135, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q1b", question = structure("What species is that penguin?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d66d61a", 
+"character")), answers = list(structure(list(id = "lnr_ans_aa1f55e", 
     option = "torgersen", value = "torgersen", label = structure("torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6091df0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a38aa85", 
     option = "Torgersen", value = "Torgersen", label = structure("Torgersen", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is the island, not the species", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d96dc9d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_990799f", 
     option = "Adelie", value = "Adelie", label = structure("Adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c132ccf", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_15a1e60", 
     option = "adelie", value = "adelie", label = structure("adelie", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1260,7 +1258,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q1b-answer", question = "q1b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 625360158.208794, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 843104810.107399, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
@@ -1274,13 +1272,11 @@ output$`tutorial-exercise-midwest-glimpse-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "midwest-glimpse", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "midwest-glimpse", code = "", 
-        opts = list(label = "\"midwest-glimpse\"", exercise = "TRUE", 
-            exercise.lines = "5"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("dim(midwest)", 
+learnr:::store_exercise_cache(structure(list(label = "midwest-glimpse", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "midwest-glimpse", code = "", opts = list(label = "\"midwest-glimpse\"", 
+        exercise = "TRUE", exercise.lines = "5"), engine = "r")), 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("dim(midwest)", 
     "", "head(midwest)"), chunk_opts = list(label = "midwest-glimpse-solution")), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
@@ -1308,16 +1304,16 @@ learnr:::store_exercise_cache(structure(list(label = "midwest-glimpse", global_s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label = "q2a", question = structure("In what state is Alexander county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_fa47d7c", 
+"character")), answers = list(structure(list(id = "lnr_ans_783519a", 
     option = "Illinois", value = "Illinois", label = structure("Illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_77c0b3e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fe8c7f9", 
     option = "illinois", value = "illinois", label = structure("illinois", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7faca0d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_672aa21", 
     option = "Il", value = "Il", label = structure("Il", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c865c3f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_89e3f61", 
     option = "IL", value = "IL", label = structure("IL", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1327,22 +1323,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_text", label =
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2a-answer", question = "q2a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1378090474.85828, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1459187915.82051, 
     options = list(placeholder = "Enter answer here...", trim = TRUE)), class = c("learnr_text", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2b", question = structure("What is the total population of Bond county?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f2cbafc", 
+"character")), answers = list(structure(list(id = "lnr_ans_8d5cc8", 
     option = "10626", value = 10626, label = structure("10626", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Alexander county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3951017", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_63eb6cc", 
     option = "66090", value = 66090, label = structure("66090", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Close! But that is Adams county", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b268071", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c98f7cf", 
     option = "14991", value = 14991, label = structure("14991", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1352,7 +1348,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q2b-answer", question = "q2b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 392101692.817413, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1289123852.8997, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1366,10 +1362,9 @@ output$`tutorial-exercise-drop-na-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "drop-na", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "drop-na", code = "penguins_no_nas <- na.omit(penguins)\n\nhead(penguins_no_nas)\ndim(penguins_no_nas)", 
+learnr:::store_exercise_cache(structure(list(label = "drop-na", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "drop-na", code = "penguins_no_nas <- na.omit(penguins)\n\nhead(penguins_no_nas)\ndim(penguins_no_nas)", 
         opts = list(label = "\"drop-na\"", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
     check = NULL, solution = NULL, tests = NULL, options = list(
@@ -1399,7 +1394,7 @@ learnr:::store_exercise_cache(structure(list(label = "drop-na", global_setup = s
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q3", question = structure("How many rows did we remove by removing missing values? (Hint: remember that the glimpse function displays the number of rows in the data...)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_a8f899a", 
+"character")), answers = list(structure(list(id = "lnr_ans_45a40cc", 
     option = "11", value = 11, label = structure("11", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1409,7 +1404,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q3-answer", question = "q3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 1037519692.01687, options = list(
+    allow_retry = TRUE, seed = 123692494.442401, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1423,10 +1418,9 @@ output$`tutorial-exercise-midwest-drop-na-output` <- renderUI({
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "midwest-drop-na", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "midwest-drop-na", code = "midwest_no_nas <- ...\n\n\ndim(...)", 
+learnr:::store_exercise_cache(structure(list(label = "midwest-drop-na", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "midwest-drop-na", code = "midwest_no_nas <- ...\n\n\ndim(...)", 
         opts = list(label = "\"midwest-drop-na\"", exercise = "TRUE", 
             exercise.lines = "7"), engine = "r")), code_check = NULL, 
     error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
@@ -1463,9 +1457,8 @@ output$`tutorial-exercise-penguins-filter-output` <- renderUI({
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
+learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
     chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()", 
         opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
         list(label = "penguins-filter", code = "chinstrap_penguins <- subset(penguins_no_nas, species == \"Chinstrap\")\n\ndim(chinstrap_penguins)\nhead(chinstrap_penguins)", 
@@ -1498,7 +1491,7 @@ learnr:::store_exercise_cache(structure(list(label = "penguins-filter", global_s
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q5", question = structure("How many Chinstrap penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_bd9245e", 
+"character")), answers = list(structure(list(id = "lnr_ans_767a2b1", 
     option = "68", value = 68, label = structure("68", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1508,7 +1501,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q5-answer", question = "q5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 1874773058.62699, options = list(
+    allow_retry = TRUE, seed = 592024214.224317, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1522,10 +1515,9 @@ output$`tutorial-exercise-q6-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "q6", code = "", opts = list(label = "\"q6\"", 
+learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "q6", code = "", opts = list(label = "\"q6\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
     error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
     options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1553,7 +1545,7 @@ learnr:::store_exercise_cache(structure(list(label = "q6", global_setup = struct
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6a", question = structure("How many Gentoo penguins are in the data (after removing NAs)?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_a1fe081", 
+"character")), answers = list(structure(list(id = "lnr_ans_37621c6", 
     option = "119", value = 119, label = structure("119", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1563,7 +1555,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q6a-answer", question = "q6a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 893049744.084141, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1650655904.73135, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1577,10 +1569,9 @@ output$`tutorial-exercise-q7-output` <- renderUI({
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "q7", code = "", opts = list(label = "\"q7\"", 
+learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "q7", code = "", opts = list(label = "\"q7\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
     error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
     options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1607,7 +1598,7 @@ learnr:::store_exercise_cache(structure(list(label = "q7", global_setup = struct
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q7a", question = structure("How many counties in the data are in Illinois?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_63971a0", 
+"character")), answers = list(structure(list(id = "lnr_ans_ae0ed6", 
     option = "102", value = 102, label = structure("102", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1617,7 +1608,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "q7a-answer", question = "q7a"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 224975962.895237, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 735231373.157631, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1631,9 +1622,8 @@ output$`tutorial-exercise-length-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "length", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
+learnr:::store_exercise_cache(structure(list(label = "length", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = "penguins_no_nas <- penguins %>%\n  drop_na()", 
     chunks = list(list(label = "no-nas", code = "penguins_no_nas <- penguins %>%\n  drop_na()", 
         opts = list(label = "\"no-nas\"", echo = "FALSE"), engine = "r"), 
         list(label = "length", code = "chinstrap_penguins <- subset(penguins_no_nas , species == \"Chinstrap\")\n\nmean(chinstrap_penguins$bill_length_mm)", 
@@ -1673,10 +1663,9 @@ output$`tutorial-exercise-q8-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "q8", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "q8", code = "", opts = list(label = "\"q8\"", 
+learnr:::store_exercise_cache(structure(list(label = "q8", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "q8", code = "", opts = list(label = "\"q8\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
     error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
     options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1710,10 +1699,9 @@ output$`tutorial-exercise-q9-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "q9", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "q9", code = "", opts = list(label = "\"q9\"", 
+learnr:::store_exercise_cache(structure(list(label = "q9", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "q9", code = "", opts = list(label = "\"q9\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
     error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
     options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1747,13 +1735,12 @@ output$`tutorial-exercise-q10-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "q10", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "q10", code = "", opts = list(
-        label = "\"q10\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+learnr:::store_exercise_cache(structure(list(label = "q10", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "q10", code = "", opts = list(label = "\"q10\"", 
+        exercise = "TRUE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
         comment = NA, highlight = FALSE, size = "normalsize", 
         background = "#F7F7F7", strip.white = TRUE, cache = 0, 
@@ -1784,20 +1771,19 @@ output$`tutorial-exercise-a-q1-code-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "a-q1-code", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "a-q1-code", code = "", opts = list(
-        label = "\"a-q1-code\"", exercise = "TRUE", lines = "8"), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = NULL, tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_base_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
+learnr:::store_exercise_cache(structure(list(label = "a-q1-code", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "a-q1-code", code = "", opts = list(label = "\"a-q1-code\"", 
+        exercise = "TRUE", lines = "8"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "data_wrangling_base_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1822,20 +1808,19 @@ output$`tutorial-exercise-a-q2-code-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "a-q2-code", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "a-q2-code", code = "", opts = list(
-        label = "\"a-q2-code\"", exercise = "TRUE", lines = "8"), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = NULL, tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_base_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
+learnr:::store_exercise_cache(structure(list(label = "a-q2-code", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "a-q2-code", code = "", opts = list(label = "\"a-q2-code\"", 
+        exercise = "TRUE", lines = "8"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "data_wrangling_base_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -1860,20 +1845,19 @@ output$`tutorial-exercise-a-q3-code-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "a-q3-code", global_setup = structure(c("options(gargle_verbosity = \"debug\")", 
-"drive_auth(path = \"creds.apps.googleusercontent.com.json\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "a-q3-code", code = "", opts = list(
-        label = "\"a-q3-code\"", exercise = "TRUE", lines = "8"), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = NULL, tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "data_wrangling_base_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
+learnr:::store_exercise_cache(structure(list(label = "a-q3-code", global_setup = structure("drive_auth(path = \"creds.apps.googleusercontent.com.json\")", chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "a-q3-code", code = "", opts = list(label = "\"a-q3-code\"", 
+        exercise = "TRUE", lines = "8"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "data_wrangling_base_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "data_wrangling_base_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
